@@ -1,8 +1,6 @@
--  Lo, I’m @Cole
--  I’m interested in many coding subjects.
--  I’m currently learning homeassistant
+° Sir, I’m @Collleee
+  
+° I’m interested in many coding subjects
 
-<!---
-Collleee/Collleee is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+° I’m currently learning YAML, Python, JavaScript, HTML
+
