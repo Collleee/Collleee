@@ -1,0 +1,71 @@
+// ==UserScript==
+// @name         Rename, Reorder and Extend Channel List Items
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @description  Rename, reorder, and extend channel list items based on specified order and names
+// @author       collleee
+// @match        https://thetvapp.to/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    window.addEventListener('DOMContentLoaded', function() {
+        var listContainer = document.querySelector('.list-group');
+        if (listContainer) {
+            var items = Array.from(listContainer.children);
+
+            const nameMapping = {
+                'WABC (New York) ABC East': 'ABC',
+                'WCBS (New York) CBS East': 'CBS',
+                'WNBC (New York) NBC East': 'NBC',
+                'WNYW (New York) FOX East': 'FOX',
+                'HBO Comedy HD': 'HBO Comedy',
+                'USA Network': 'USA',
+                'FOX News Channel': 'FOX News',
+                // Add other channels as needed
+            };
+
+            // Rename items based on the mapping
+            items.forEach(item => {
+                Object.keys(nameMapping).forEach(fullName => {
+                    if (item.textContent.includes(fullName)) {
+                        item.textContent = nameMapping[fullName];
+                    }
+                });
+            });
+
+            // Refresh the list of items after renaming
+            items = Array.from(listContainer.children);
+
+            // Define the extended desired order of channel names
+            const desiredOrder = [
+                'CSPAN', 
+                'FOX News', 
+                'ABC', 
+                'CBS', 
+                'NBC', 
+                'FOX', 
+                'USA', 
+                'HBO Comedy'
+            ];
+
+            // Create an array to hold items that match the desired order
+            let orderedItems = [];
+
+            // Collect items in the desired order
+            desiredOrder.forEach(channelName => {
+                let foundItem = items.find(item => item.textContent.trim() === channelName);
+                if(foundItem) {
+                    orderedItems.push(foundItem);
+                }
+            });
+
+            // Move collected items to the front of the list in the correct order
+            orderedItems.reverse().forEach(item => {
+                listContainer.insertBefore(item, listContainer.firstChild);
+            });
+        }
+    });
+})();
