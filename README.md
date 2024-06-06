@@ -2,5 +2,5 @@
   
 ° I’m interested in many coding subjects
 
-° I’m currently learning YAML, Python, JavaScript, HTML
+° I’ve learnee Python, YAML and JavaScript. I am currently learning more of Python and JavaScript.
 
